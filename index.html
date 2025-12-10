@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>十四五与十五五对比可视化</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Han+Sans+SC:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">“数”读二十届四中全会</p>
+        <h1>十四五成就 · 十五五展望</h1>
+        <p>
+          对比十四五期间的核心成果，并展示十五五时期规划重点。<br>
+          复旦大学大数据学院2024级专硕党支部学习二十届四中全会精神成果可视化展示
+        </p>
+        <div class="hero__actions">
+          <button class="btn dark-red" data-scroll-target="#plan14">
+            查看十四五成就
+          </button>
+          <button class="btn dark-red" data-scroll-target="#plan15">
+            了解十五五规划
+          </button>
+        </div>
+      </div>
+      <div class="hero__viz">
+        <canvas id="heroChart" width="320" height="320"></canvas>
+      </div>
+    </header>
+ 
+    <main>
+      <section id="plan14" class="panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">十四五重点成就</p>
+            <h2>高质量发展已取得阶段性成果</h2>
+          </div>
+        </div>
+        <div class="linechart-wrapper">
+          <div class="linechart-header">
+            <div>
+              <p class="eyebrow">十四五时期数据趋势</p>
+              <h3>重点指标对比</h3>
+            </div>
+          </div>
+          <div class="linechart-tabs">
+            <button class="chart-tab chart-tab--active" data-tab="macro">
+              宏观总量（GDP & 人均GDP）
+            </button>
+            <button class="chart-tab" data-tab="industry">
+              三次产业增加值
+            </button>
+            <button class="chart-tab" data-tab="consumption">
+              居民消费水平
+            </button>
+            <button class="chart-tab" data-tab="population">
+              人口规模与结构
+            </button>
+          </div>
+          <div class="linechart-canvas" data-tab-content="macro">
+            <canvas id="lineChartMacro"></canvas>
+            <p class="linechart-note">GDP：亿元 · 人均GDP：元</p>
+          </div>
+          <div class="industry-layout" data-tab-content="industry" hidden>
+            <div class="linechart-canvas linechart-canvas--industry">
+              <canvas id="lineChartIndustry"></canvas>
+              <p class="linechart-note">单位：亿元</p>
+            </div>
+            <div class="pie-stack">
+              <div class="pie-controls">
+                <span class="eyebrow" style="letter-spacing: 0.08em">产业结构占比</span>
+                <select id="pieIndustryYearSelect" class="pie-select" aria-label="选择年份">
+                </select>
+              </div>
+              <div class="pie-card">
+                <div class="pie-card__title">一二三产业占比</div>
+                <canvas id="pieIndustry"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="linechart-canvas" data-tab-content="consumption" hidden>
+            <canvas id="lineChartConsumption"></canvas>
+            <p class="linechart-note">单位：元</p>
+          </div>
+          <div class="population-layout" data-tab-content="population" hidden>
+            <div class="linechart-canvas linechart-canvas--population">
+              <canvas id="lineChartPopulation"></canvas>
+              <p class="linechart-note">单位：万人</p>
+            </div>
+            <div class="pie-grid">
+              <div class="pie-controls pie-controls--inline">
+                <span class="eyebrow" style="letter-spacing: 0.08em">人口结构切换</span>
+                <select id="pieYearSelect" class="pie-select" aria-label="选择年份">
+                </select>
+              </div>
+              <div class="pie-card">
+                <div class="pie-card__title">城镇 vs 乡村</div>
+                <canvas id="pieUrbanRural"></canvas>
+              </div>
+              <div class="pie-card">
+                <div class="pie-card__title">男性 vs 女性</div>
+                <canvas id="pieGender"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="achievements-split">
+          <div class="achievements-left">
+            <div class="achievements-head">
+              <div>
+                <p class="eyebrow">十四五主要成就</p>
+                <h3>三大成就概览</h3>
+              </div>
+              <div class="carousel-controls">
+                <button class="chart-nav-btn" id="achievementsPrev" aria-label="上一项">‹</button>
+                <span class="chart-indicator" id="achievementsIndicator"></span>
+                <button class="chart-nav-btn" id="achievementsNext" aria-label="下一项">›</button>
+              </div>
+            </div>
+            <div class="achievement-card" id="achievementCard">
+              <p class="achievement-label" id="achievementTitle"></p>
+              <p class="achievement-value" id="achievementValue"></p>
+              <p class="achievement-sub" id="achievementTarget"></p>
+              <p class="achievement-detail" id="achievementDetail"></p>
+            </div>
+          </div>
+          <div class="achievements-right">
+            <div class="achievements-head">
+              <div>
+                <p class="eyebrow">成就影像</p>
+                <h3>九图轮播</h3>
+              </div>
+              <div class="carousel-controls">
+                <button class="chart-nav-btn" id="achievementImgPrev" aria-label="上一张">‹</button>
+                <span class="chart-indicator" id="achievementImgIndicator"></span>
+                <button class="chart-nav-btn" id="achievementImgNext" aria-label="下一张">›</button>
+              </div>
+            </div>
+            <div class="achievement-image-frame">
+              <img id="achievementImage" alt="成就图片" />
+            </div>
+          </div>
+        </div>
+        <div class="timeline" id="milestones"></div>
+      </section>
+
+      <section id="plan15" class="panel panel--dark">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">十五五时期重大战略</p>
+            <h2>坚持稳中求进工作总基调</h2>
+          </div>
+        </div>
+        <div class="flowchart" id="flowchart"></div>
+      </section>
+
+      <section class="panel panel--compare">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">十五五时期思维导图</p>
+            <h2>中共中央关于制定国民经济和社会发展第十五个五年规划的建议</h2>
+          </div>
+        </div>
+        <div class="compare compare--image" id="compareList">
+          <div class="mindmap-image-wrapper">
+            <img src="./image/IMG_1.jpg" alt="十五五规划思维导图" id="mindmapImage" />
+            <button class="mindmap-zoom-btn" id="mindmapZoomIn" aria-label="放大">+</button>
+            <button class="mindmap-zoom-btn" id="mindmapZoomOut" aria-label="缩小">−</button>
+            <button class="mindmap-zoom-btn" id="mindmapReset" aria-label="重置">⟳</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        复旦大学大数据学院2024级专硕党支部 · “数”读二十届四中全会 
+        <span id="year"></span>
+      </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
