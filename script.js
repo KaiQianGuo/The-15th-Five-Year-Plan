@@ -5,9 +5,9 @@ const achievementsData = [
     target: "",
     unit: "",
     detail: `
-    我国是世界经济增长的主要贡献者，对世界经济增长的贡献率一直保持在30%左右。
-    我国是全球第二大消费市场和进口市场，消费对经济增长的贡献率达到了60%左右，主引擎作用持续凸显。
-    我国货物贸易稳居全球第一。服务贸易规模稳居全球第二，去年首次超过1万亿美元。
+    我国是世界经济增长的主要贡献者，对世界经济增长的贡献率一直保持在<span class="nowrap"><strong>30%</strong>左右。</span>
+    我国是<span class="nowrap"><strong>全球第二大</strong>消费市场</span>和进口市场，消费对经济增长的贡献率达到了<span class="nowrap"><strong>60%</strong>左右</span>，主引擎作用持续凸显。
+    我国货物贸易稳居<span class="nowrap"><strong>全球第一</strong></span>。服务贸易规模稳居<span class="nowrap"><strong>全球第二</strong></span>，去年首次超过<span class="nowrap"><strong>1万亿美元</strong></span>。
     `,
   },
   {
@@ -16,8 +16,8 @@ const achievementsData = [
     target: "",
     unit: "",
     detail: `
-    我国建成了全球规模最大的教育体系、社会保障体系、医疗卫生体系。
-    我国建成了全球最大的高速铁路网、高速公路网和邮政快递网。
+    我国建成了<span class="nowrap"><strong>全球规模最大的</strong>教育体系</span>、<span class="nowrap">社会保障体系</span>、<span class="nowrap">医疗卫生体系</span>。
+    我国建成了<span class="nowrap"><strong>全球最大的</strong>高速铁路网</span>、<span class="nowrap">高速公路网</span>和<span class="nowrap">邮政快递网</span>。
     `,
   },
   {
@@ -26,9 +26,9 @@ const achievementsData = [
     target: "",
     unit: "",
     detail: `
-    海上，第一艘国产电磁弹射航母——福建舰下水。第一艘大洋钻探船——“梦想”号探秘大洋。第一艘国产大型油轮——“爱达·魔都号”建成运营。
-    陆上，全球第一座第四代核电站——石岛湾基地投入商业运行。秦岭站崛起冰原——南极建设的第五个科考站。CR450动车组发布。
-    天上，“嫦娥六号”——第一次月球背面无人采样返回。国产大飞机——C919实现商业飞行。
+    海上，第一艘国产电磁弹射航母——<span class="nowrap"><strong>福建舰</strong>下水</span>。第一艘大洋钻探船——<span class="nowrap"><strong>“梦想”号</strong>探秘大洋</span>。第一艘国产大型油轮——<span class="nowrap"><strong>“爱达·魔都号”</strong>建成运营</span>。
+    陆上，<span class="nowrap"><strong>全球第一座第四代核电站</strong>——<strong>石岛湾基地</strong>投入商业运行</span>。<span class="nowrap"><strong>秦岭站</strong>崛起冰原——南极建设的<strong>第五个科考站</strong></span>。<span class="nowrap"><strong>CR450动车组</strong>发布</span>。
+    天上，<span class="nowrap"><strong>“嫦娥六号”</strong>——<strong>第一次月球背面无人采样返回</strong></span>。国产大飞机——<span class="nowrap"><strong>C919</strong>实现商业飞行</span>。
     `,
   },
 ];
@@ -285,8 +285,9 @@ const renderAchievement = () => {
   achievementNextBtn && (achievementNextBtn.style.display = "none");
 
   const blocks = achievementsData.map((item) => {
+    // 每一行单独一个灰框：支持你在 detail 里写的 <br> 或换行符
     const lines = (item.detail || "")
-      .split("\n")
+      .split(/<br\s*\/?>|\n/gi)
       .map((l) => l.trim())
       .filter(Boolean)
       .map((line) => `<div class="achievement-line">${line}</div>`)
@@ -424,48 +425,6 @@ if (flowNodes.length > 1) {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-const heroCtx = document.getElementById("heroChart");
-if (heroCtx) {
-  new Chart(heroCtx, {
-    type: "radar",
-    data: {
-      labels: ["创新", "绿色", "数字化", "民生", "开放", "安全"],
-      datasets: [
-        {
-          label: "十四五",
-          data: [85, 78, 72, 80, 75, 82],
-          borderColor: "rgba(248,113,113,0.9)",
-          backgroundColor: "rgba(248,113,113,0.2)",
-          borderWidth: 2,
-          pointRadius: 0,
-        },
-        {
-          label: "十五五展望",
-          data: [92, 88, 90, 84, 82, 90],
-          borderColor: "rgba(239,68,68,0.9)",
-          backgroundColor: "rgba(239,68,68,0.18)",
-          borderWidth: 2,
-          pointRadius: 0,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        r: {
-          angleLines: { color: "rgba(255,255,255,0.1)" },
-          grid: { color: "rgba(255,255,255,0.08)" },
-          pointLabels: { color: "#e2e8f0", font: { size: 12 } },
-          suggestedMin: 60,
-          suggestedMax: 100,
-          ticks: { display: false },
-        },
-      },
-    },
-  });
-}
 
 // 折线图：十四五时期（2020-2024）分组展示
 let macroChart = null;

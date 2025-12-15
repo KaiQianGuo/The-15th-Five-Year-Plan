@@ -15,8 +15,8 @@
   <body>
     <header class="hero">
       <div class="hero__text">
-        <p class="eyebrow">“数”读二十届四中全会</p>
-        <h1>十四五成就 · 十五五展望</h1>
+        <p class="eyebrow">十四五成就·十五五展望</p>
+        <h1>数读全会——数据可视化党的二十届四中全会</h1>
         <p>
           对比十四五期间的核心成果，并展示十五五时期规划重点。<br>
           复旦大学大数据学院2024级专硕党支部学习二十届四中全会精神成果可视化展示
@@ -31,7 +31,11 @@
         </div>
       </div>
       <div class="hero__viz">
-        <canvas id="heroChart" width="320" height="320"></canvas>
+        <img
+          src="./image/IMG_zong.jpg"
+          alt="可视化图表"
+          style="max-width: 320px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 1rem;"
+        />
       </div>
     </header>
  
@@ -66,11 +70,13 @@
           </div>
           <div class="linechart-canvas" data-tab-content="macro">
             <canvas id="lineChartMacro"></canvas>
+            <p class="linechart-desc" id="descMacro">“十四五”期间，我国GDP稳步提升，人均GDP持续增长，反映出经济持续扩张和居民生活水平的提高。</p>
             <p class="linechart-note">GDP：亿元 · 人均GDP：元</p>
           </div>
           <div class="industry-layout" data-tab-content="industry" hidden>
             <div class="linechart-canvas linechart-canvas--industry">
               <canvas id="lineChartIndustry"></canvas>
+              <p class="linechart-desc" id="descIndustry">第一产业、第二产业和第三产业均保持较好发展，产业结构持续优化，第三产业比重逐年提升，显示经济向高端服务和创新驱动转型。</p>
               <p class="linechart-note">单位：亿元</p>
             </div>
             <div class="pie-stack">
@@ -87,11 +93,13 @@
           </div>
           <div class="linechart-canvas" data-tab-content="consumption" hidden>
             <canvas id="lineChartConsumption"></canvas>
+            <p class="linechart-desc" id="descConsumption">城乡居民消费能力不断增强，消费结构更趋合理，充分体现内需对经济增长的主引擎作用。</p>
             <p class="linechart-note">单位：元</p>
           </div>
           <div class="population-layout" data-tab-content="population" hidden>
             <div class="linechart-canvas linechart-canvas--population">
               <canvas id="lineChartPopulation"></canvas>
+              <p class="linechart-desc" id="descPopulation">总人口规模变化平稳，城镇化率提升，人口结构日趋优化，为经济持续健康发展提供坚实的人力资源保障。</p>
               <p class="linechart-note">单位：万人</p>
             </div>
             <div class="pie-grid">
@@ -170,7 +178,7 @@
         </div>
         <div class="compare compare--image" id="compareList">
           <div class="mindmap-image-wrapper">
-            <img src="./image/IMG_1.jpg" alt="十五五规划思维导图" id="mindmapImage" />
+            <img src="./image/exported_image.png" alt="十五五规划思维导图" id="mindmapImage" />
             <button class="mindmap-zoom-btn" id="mindmapZoomIn" aria-label="放大">+</button>
             <button class="mindmap-zoom-btn" id="mindmapZoomOut" aria-label="缩小">−</button>
             <button class="mindmap-zoom-btn" id="mindmapReset" aria-label="重置">⟳</button>
@@ -181,7 +189,7 @@
 
     <footer class="footer">
       <p>
-        复旦大学大数据学院2024级专硕党支部 · “数”读二十届四中全会 
+        数据来源：国家统计局
         <span id="year"></span>
       </p>
     </footer>

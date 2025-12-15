@@ -1,3 +1,7 @@
+.nowrap {
+  white-space: nowrap;
+}
+
 :root {
   color-scheme: light dark;
   font-family: "Source Han Sans SC", "Noto Sans SC", system-ui, -apple-system,
@@ -228,6 +232,11 @@ main {
   color: var(--text);
 }
 
+.achievement-lines strong {
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
 .achievement-lines .achievement-line {
   background: rgba(47, 12, 12, 0.04);
   border: 1px dashed rgba(239, 68, 68, 0.18);
@@ -240,9 +249,9 @@ main {
   border-radius: 1.25rem;
   overflow: hidden;
   position: relative;
-  min-height: 260px;
-  height: 100%;
-  max-height: none;
+  min-height: 650px;
+  height: 650px;
+  max-height: 650px;
   aspect-ratio: auto;
   display: flex;
   box-shadow: 0 18px 32px rgba(239, 68, 68, 0.08);
@@ -389,10 +398,16 @@ main {
 
 .linechart-wrapper {
   margin-bottom: 2rem;
-  padding: 1.5rem;
+  padding: 2.5rem;
   background: #f8fafc;
   border-radius: 1.25rem;
   border: 1px solid var(--border);
+  max-width: 1600px;
+  min-width: 1200px;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 650px;
 }
 
 .linechart-header {
@@ -475,8 +490,8 @@ main {
 
 .linechart-canvas {
   width: 100%;
-  max-width: 900px;
-  height: 300px;
+  max-width: 1150px;
+  height: 380px;
   margin: 0 auto 0.5rem;
 }
 
@@ -495,6 +510,19 @@ main {
 
 [data-tab-content][hidden] {
   display: none !important;
+}
+
+.linechart-desc {
+  color: #7a2121;
+  margin-top: 0.5rem;
+  font-size: 1.09rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .linechart-note {
